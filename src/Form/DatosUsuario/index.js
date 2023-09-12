@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { TextField, Button, Box } from "@mui/material";
+import { validarPassword, validarEmail } from "./validaciones";
 
 
 
@@ -32,7 +33,10 @@ const DatosUsuario = () => {
           helperText={false && "Ingresa un correo electrónico válido"}
           value={ email.value } //ya puedo acceder de esta manera gracias ala useState
           //asi podemos modificar el contenido del input
-          onChange={ (input) => setEmail({value: input.target.value, valid: true})}
+          onChange={ (input) => {
+            const email = input.target.value
+            setEmail({value: email, valid: validarEmail(email)})
+          }}
         />
         <TextField
           label="Contraseña"
@@ -41,7 +45,10 @@ const DatosUsuario = () => {
           margin="dense"
           type="password"
           value={ password.value }
-          onChange={ (input) => setPassword({value: input.target.value, valid: true})}
+          onChange={ (input) => {
+            const password = input.target.value
+            setPassword({value: password, valid: validarPassword(password)})
+          }}
         />
         <Button variant="contained" type="submit">
           Siguiente
