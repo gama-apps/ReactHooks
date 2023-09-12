@@ -4,7 +4,7 @@ import { validarPassword, validarEmail } from "./validaciones";
 
 
 
-const DatosUsuario = () => {
+const DatosUsuario = ({updateStep}) => {
 
   const[email, setEmail] = useState({value: "", valid: null})
   const[password, setPassword] = useState({value: "", valid: null})
@@ -23,6 +23,7 @@ const DatosUsuario = () => {
           event.preventDefault()
           if(email.valid && password.valid){
             console.log("Siguiente formulario");
+            updateStep(1)
           }else{
             console.log("No hacer nada");
           }
