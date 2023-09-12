@@ -34,8 +34,8 @@ const DatosUsuario = () => {
           fullWidth
           margin="dense"
           type="email"
-          error={email.valid == false}
-          helperText={email.valid == false && "Ingresa un correo electrónico válido"}
+          error={email.valid === false}
+          helperText={email.valid === false && "Ingresa un correo electrónico válido"}
           value={ email.value } //ya puedo acceder de esta manera gracias ala useState
           //asi podemos modificar el contenido del input
           onChange={ (input) => {
@@ -49,8 +49,8 @@ const DatosUsuario = () => {
           fullWidth
           margin="dense"
           type="password"
-          error={password.valid == false}
-          helperText={password.valid == false && "Ingresa una contraseña válida de al menos 8 caracteres"}
+          error={password.valid === false}
+          helperText={password.valid === false && "Ingresa una contraseña válida de al menos 8 caracteres"}
           value={ password.value }
           onChange={ (input) => {
             const password = input.target.value
