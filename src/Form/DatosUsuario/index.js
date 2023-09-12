@@ -6,8 +6,8 @@ import { validarPassword, validarEmail } from "./validaciones";
 
 const DatosUsuario = () => {
 
-  const[email, setEmail] = useState({value: "", valid: true})
-  const[password, setPassword] = useState({value: "", valid: true})
+  const[email, setEmail] = useState({value: "", valid: null})
+  const[password, setPassword] = useState({value: "", valid: null})
   
     return (
       <Box
@@ -21,6 +21,11 @@ const DatosUsuario = () => {
         }}
         onSubmit={ (event) => {
           event.preventDefault()
+          if(email.valid && password.valid){
+            console.log("Siguiente formulario");
+          }else{
+            console.log("No hacer nada");
+          }
         }}
       >
         <TextField
@@ -29,8 +34,8 @@ const DatosUsuario = () => {
           fullWidth
           margin="dense"
           type="email"
-          error={false}
-          helperText={false && "Ingresa un correo electrónico válido"}
+          error={email.valid == false}
+          helperText={email.valid == false && "Ingresa un correo electrónico válido"}
           value={ email.value } //ya puedo acceder de esta manera gracias ala useState
           //asi podemos modificar el contenido del input
           onChange={ (input) => {
@@ -44,6 +49,8 @@ const DatosUsuario = () => {
           fullWidth
           margin="dense"
           type="password"
+          error={password.valid == false}
+          helperText={password.valid == false && "Ingresa una contraseña válida de al menos 8 caracteres"}
           value={ password.value }
           onChange={ (input) => {
             const password = input.target.value

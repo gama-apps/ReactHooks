@@ -9,7 +9,7 @@ export const validarEmail = (email) => {
 
 export const validarPassword = (password) => {
   const length = password.length;
-  if (length > 8 && length > 20) {
+  if (length >= 8 && length > 20) {
     return true
   } else {
     return false
