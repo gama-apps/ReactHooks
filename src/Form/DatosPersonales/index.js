@@ -29,6 +29,8 @@ const DatosPersonales = ({updateStep}) => {
         fullWidth
         margin="dense"
         type="text"
+        error={name.valid === false}
+        helperText={name.valid === false && "Ingresa un nombre válido"}
         value={name.value}
         onChange={(input) => {
           const value = input.target.value
@@ -42,6 +44,8 @@ const DatosPersonales = ({updateStep}) => {
         fullWidth
         margin="dense"
         type="text"
+        error={lastName.valid === false}
+        helperText={lastName.valid === false && "Ingresa un apellido válido"}
         value={lastName.value}
         onChange={(input) => {
           const value = input.target.value
@@ -55,6 +59,8 @@ const DatosPersonales = ({updateStep}) => {
         fullWidth
         margin="dense"
         type="number"
+        error={phone.valid === false}
+        helperText={phone.valid === false && "Ingresa un numero válido"}
         inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
         value={phone.value}
         onChange={(input) => {
