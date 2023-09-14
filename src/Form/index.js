@@ -6,6 +6,9 @@ import DatosPersonales from "./DatosPersonales";
 import DatosEntrega from "./DatosEntrega";
 import Complete from "./Complete";
 import Stepper from "../Stepper";
+import Step from "./Step"
+
+import { validarPassword, validarEmail } from "./DatosUsuario/validaciones";
 
 const Form = () => {
   const [step, setStep] = useState(0)
@@ -27,11 +30,40 @@ const Form = () => {
     setStep(step)
   }
 
-  const steps = {
-    0: <DatosUsuario updateStep={updateStep}/>,
-    1: <DatosPersonales updateStep={updateStep}/>,
-    2: <DatosEntrega updateStep={updateStep}/>,
-    3: <Complete />
+//   const steps = {
+//     0: <DatosUsuario updateStep={updateStep}/>,
+//     1: <DatosPersonales updateStep={updateStep}/>,
+//     2: <DatosEntrega updateStep={updateStep}/>,
+//     3: <Complete />
+// }
+
+const onSubmit = () => {}
+
+const stepsFlow = {
+  0: {
+    inputs: [
+      {
+        label: "Correo eletronico",
+        type: "email",
+        value: "",
+        valid: null,
+        onChange: () => {},
+        helperText: "Ingresa un correo electrónico válido",
+        validator: validarEmail
+      },
+      {
+        label: "Contraseña",
+        type: "password",
+        value: "",
+        valid: null,
+        onChange: () => {},
+        helperText: "Ingresa una contraseña válida de al menos 8 caracteres",
+        validator: validarPassword
+      },
+    ],
+    buttonText: "Siguiente",
+    onSubmit: onSubmit
+  }
 }
 
   return (
@@ -48,11 +80,9 @@ const Form = () => {
       </LogoSpace>
       <FormSpace>
         {step < 3 && <Stepper step={step}/>}
-        {/* <DatosUsuario />
-        <DatosPersonales />
-        <DatosEntrega /> */}
         {/* {selectStep()} */}
-        {steps[step]}
+        {/* {steps[step]} */}
+        <Step data={stepsFlow[step]} step={step}/>
       </FormSpace>
     </Box>
   );
