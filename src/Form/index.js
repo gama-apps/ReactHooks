@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Box, Typography } from "@mui/material";
 import { LogoSpace, FormSpace, Img } from "./styles";
 import DatosUsuario from "./DatosUsuario";
@@ -12,6 +12,20 @@ import { validarPassword, validarEmail } from "./DatosUsuario/validaciones";
 
 const Form = () => {
   const [step, setStep] = useState(0)
+  const [pasos, setPasos] = useState({})
+
+  useEffect(() => {})
+
+  useEffect(() => {}, [step])
+
+  // useEffect(async () => {
+  //   try {
+  //     const data = await fetch("url")
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+
+  // })
 
   // const selectStep = () => {
   //   switch (step){
@@ -30,14 +44,18 @@ const Form = () => {
     setStep(step)
   }
 
-//   const steps = {
-//     0: <DatosUsuario updateStep={updateStep}/>,
-//     1: <DatosPersonales updateStep={updateStep}/>,
-//     2: <DatosEntrega updateStep={updateStep}/>,
-//     3: <Complete />
-// }
+  const steps = {
+    0: <DatosUsuario updateStep={updateStep}/>,
+    1: <DatosPersonales updateStep={updateStep}/>,
+    2: <DatosEntrega updateStep={updateStep}/>,
+    3: <Complete />
+}
 
-const onSubmit = () => {}
+const onSubmit = (event) => {
+  event.preventDefault()
+  let newStep = step + 1
+  setStep(newStep)
+}
 
 const handleChange = (element, position, currentStep, validator) => {
   const value = element.target.value
@@ -46,6 +64,30 @@ const handleChange = (element, position, currentStep, validator) => {
 
 const stepsFlow = {
   0: {
+    inputs: [
+      {
+        label: "Correo eletronico",
+        type: "email",
+        value: "",
+        valid: null,
+        onChange: handleChange,
+        helperText: "Ingresa un correo electrónico válido",
+        validator: validarEmail
+      },
+      {
+        label: "Contraseña",
+        type: "password",
+        value: "",
+        valid: null,
+        onChange: handleChange,
+        helperText: "Ingresa una contraseña válida de al menos 8 caracteres",
+        validator: validarPassword
+      },
+    ],
+    buttonText: "Siguiente",
+    onSubmit: onSubmit
+  },
+  1: {
     inputs: [
       {
         label: "Correo eletronico",
