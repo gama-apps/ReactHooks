@@ -39,6 +39,11 @@ const Form = () => {
 
 const onSubmit = () => {}
 
+const handleChange = (element, position, currentStep, validator) => {
+  const value = element.target.value
+  const valid = validator(value)
+}
+
 const stepsFlow = {
   0: {
     inputs: [
@@ -47,7 +52,7 @@ const stepsFlow = {
         type: "email",
         value: "",
         valid: null,
-        onChange: () => {},
+        onChange: handleChange,
         helperText: "Ingresa un correo electrónico válido",
         validator: validarEmail
       },
@@ -56,7 +61,7 @@ const stepsFlow = {
         type: "password",
         value: "",
         valid: null,
-        onChange: () => {},
+        onChange: handleChange,
         helperText: "Ingresa una contraseña válida de al menos 8 caracteres",
         validator: validarPassword
       },

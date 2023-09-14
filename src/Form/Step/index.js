@@ -35,7 +35,7 @@ const Step = ({ data, step }) => {
               helperText={valid === false && {helperText}}
               value={value} //ya puedo acceder de esta manera gracias ala useState
               //asi podemos modificar el contenido del input
-              onChange={onChange}
+              onChange={ (event) => onChange(event, i, step, validator)}
             />
           )
         })
